@@ -2,6 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const app = express();
 const serviceRouter = require("./app/modules/service/service.route");
+const bannerRouter = require("./app/modules/banner/banner.route");
 
 app.use(cors());
 app.use(express.json());
@@ -12,10 +13,6 @@ app.get("/", (req, res) => {
 });
 
 app.use("/service", serviceRouter);
-module.exports = app;
+app.use("/banner", bannerRouter);
 
-/**
- * prothome route
- * controller model service
- *
- */
+module.exports = app;

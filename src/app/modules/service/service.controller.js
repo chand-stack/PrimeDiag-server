@@ -2,6 +2,7 @@ const express = require("express");
 const {
   createServiceService,
   getAllServiceService,
+  getSingleServiceService,
 } = require("./service.service");
 
 const createServiceController = async (req, res) => {
@@ -20,7 +21,7 @@ const createServiceController = async (req, res) => {
   } catch (error) {
     res.status(500).json({
       status: "error",
-      message: "somethin went wrong",
+      message: "something went wrong",
       data: error,
     });
   }
@@ -37,7 +38,25 @@ const getAllServiceController = async (req, res) => {
   } catch (error) {
     res.status(500).json({
       status: "error",
-      message: "somethin went wrong",
+      message: "something went wrong",
+      data: error,
+    });
+  }
+};
+
+const getSingleServiceController = async (req, res) => {
+  try {
+    const id = req.params.id;
+    const service = await getSingleServiceService(id);
+    res.status(200).json({
+      status: "success",
+      message: "successfully get data",
+      data: service,
+    });
+  } catch (error) {
+    res.status(500).json({
+      status: "error",
+      message: "something went wrong",
       data: error,
     });
   }
@@ -46,6 +65,7 @@ const getAllServiceController = async (req, res) => {
 module.exports = {
   createServiceController,
   getAllServiceController,
+  getSingleServiceController,
 };
 
 // controller er moddhe business logic hobe

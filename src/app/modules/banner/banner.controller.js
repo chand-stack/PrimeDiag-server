@@ -1,14 +1,31 @@
 const express = require("express");
-const { createBannerService } = require("./banner.service");
+const { createBannerService, getBannerService } = require("./banner.service");
 
 const createBannerController = async (req, res) => {
   try {
     const data = req.body;
-    const bannner = await createBannerService(data);
+    const banner = await createBannerService(data);
     res.status(201).json({
       status: "success",
       message: "successfully created a new service",
-      data: bannner,
+      data: banner,
+    });
+  } catch (error) {
+    res.status(500).json({
+      status: "error",
+      message: "somethin went wrong",
+      data: error,
+    });
+  }
+};
+
+const getBannerController = async (req, res) => {
+  try {
+    const banner = await getBannerService();
+    res.status(201).json({
+      status: "success",
+      message: "successfully created a new service",
+      data: banner,
     });
   } catch (error) {
     res.status(500).json({
@@ -21,4 +38,5 @@ const createBannerController = async (req, res) => {
 
 module.exports = {
   createBannerController,
+  getBannerController,
 };

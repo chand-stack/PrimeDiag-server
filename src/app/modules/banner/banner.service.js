@@ -6,6 +6,12 @@ const createBannerService = async (data) => {
   return createBanner;
 };
 
+const getBannerService = async () => {
+  const getBanner = BannerModel.find();
+  return getBanner;
+};
+
 module.exports = {
   createBannerService,
+  getBannerService,
 };

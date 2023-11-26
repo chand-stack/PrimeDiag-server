@@ -25,6 +25,10 @@ const bannerSchema = new Schema({
     type: Number,
     required: true,
   },
+  isActive: {
+    type: Boolean,
+    required: true,
+  },
 });
 
 const BannerModel = model("Banner", bannerSchema);

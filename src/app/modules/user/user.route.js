@@ -3,12 +3,14 @@ const {
   createUserController,
   getAllUserController,
   makeAdminController,
+  getSingleUserController,
 } = require("./user.controller");
 
 const router = express.Router();
 
 router.post("/", createUserController);
 router.get("/", getAllUserController);
-router.put("/:id", makeAdminController);
+router.patch("/:id", makeAdminController);
+router.get("/:email", getSingleUserController);
 
 module.exports = router;

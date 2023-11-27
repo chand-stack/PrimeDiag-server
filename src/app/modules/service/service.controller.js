@@ -4,6 +4,7 @@ const {
   getAllServiceService,
   getSingleServiceService,
   deleteSingleServiceService,
+  updateSingleServiceService,
 } = require("./service.service");
 
 const createServiceController = async (req, res) => {
@@ -81,11 +82,32 @@ const deleteSingleServiceController = async (req, res) => {
   }
 };
 
+const updateSingleServiceController = async (req, res) => {
+  try {
+    const id = req.params.id;
+    const data = req.body;
+    console.log(data);
+    const updatedService = updateSingleServiceService(id, data);
+    res.status(201).json({
+      status: "success",
+      message: "successfully updated",
+      data: updatedService,
+    });
+  } catch (error) {
+    res.status(500).json({
+      status: "error",
+      message: "something went wrong",
+      data: error,
+    });
+  }
+};
+
 module.exports = {
   createServiceController,
   getAllServiceController,
   getSingleServiceController,
   deleteSingleServiceController,
+  updateSingleServiceController,
 };
 
 // controller er moddhe business logic hobe

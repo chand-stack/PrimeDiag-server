@@ -3,6 +3,7 @@ const {
   createUserService,
   getAllUserService,
   makeAdminService,
+  getSingleUserService,
 } = require("./user.service");
 
 const createUserController = async (req, res) => {
@@ -60,8 +61,26 @@ const makeAdminController = async (req, res) => {
   }
 };
 
+const getSingleUserController = async (req, res) => {
+  try {
+    const email = req.params.email;
+    const user = await getSingleUserService(email);
+    res.status(201).json({
+      status: "success",
+      message: "successfully get user",
+      data: user,
+    });
+  } catch (error) {
+    res.status(501).json({
+      status: "error",
+      message: "something went wrong",
+      data: error,
+    });
+  }
+};
 module.exports = {
   createUserController,
   getAllUserController,
   makeAdminController,
+  getSingleUserController,
 };

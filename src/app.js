@@ -4,6 +4,7 @@ const app = express();
 const serviceRouter = require("./app/modules/service/service.route");
 const bannerRouter = require("./app/modules/banner/banner.route");
 const userRouter = require("./app/modules/user/user.route");
+const recommendRouter = require("./app/modules/recommendation/recommen.route");
 
 app.use(cors());
 app.use(express.json());
@@ -16,5 +17,6 @@ app.get("/", (req, res) => {
 app.use("/service", serviceRouter);
 app.use("/banner", bannerRouter);
 app.use("/user", userRouter);
+app.use("/recommend", recommendRouter);
 
 module.exports = app;

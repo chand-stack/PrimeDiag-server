@@ -10,10 +10,19 @@ const getAllUserService = async () => {
   return getUser;
 };
 
-const makeAdminService = async (id, data) => {};
+const makeAdminService = async (id, data) => {
+  const makeAdmin = await UserModel.findByIdAndUpdate(id, data, { new: true });
+  return makeAdmin;
+};
+
+const getSingleUserService = async (email) => {
+  const getSingleUser = UserModel.findOne({ email: email });
+  return getSingleUser;
+};
 
 module.exports = {
   createUserService,
   getAllUserService,
   makeAdminService,
+  getSingleUserService,
 };

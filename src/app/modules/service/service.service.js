@@ -16,10 +16,16 @@ const getSingleServiceService = async (id) => {
   const findSingleService = await ServiceModel.findOne({ _id: id });
   return findSingleService;
 };
+
+const deleteSingleServiceService = async (id) => {
+  const deleteService = await ServiceModel.deleteOne({ _id: id });
+  return deleteService;
+};
 module.exports = {
   createServiceService,
   getAllServiceService,
   getSingleServiceService,
+  deleteSingleServiceService,
 };
 
 // database er shathe bojhapora hobe

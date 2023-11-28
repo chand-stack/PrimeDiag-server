@@ -31,7 +31,9 @@ const createServiceController = async (req, res) => {
 
 const getAllServiceController = async (req, res) => {
   try {
-    const service = await getAllServiceService();
+    const page = parseInt(req.query.page);
+    const size = parseInt(req.query.size);
+    const service = await getAllServiceService(page, size);
     res.status(200).json({
       status: "success",
       message: "successfully get data",

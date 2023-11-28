@@ -7,8 +7,10 @@ const createServiceService = async (data) => {
   return createService;
 };
 
-const getAllServiceService = async () => {
-  const findService = await ServiceModel.find();
+const getAllServiceService = async (page, size) => {
+  const findService = await ServiceModel.find()
+    .skip(page * size)
+    .limit(size);
   return findService;
 };
 

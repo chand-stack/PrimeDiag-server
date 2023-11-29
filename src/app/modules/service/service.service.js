@@ -25,27 +25,19 @@ const deleteSingleServiceService = async (id) => {
 };
 
 const updateSingleServiceService = async (id, data) => {
-  // const option = { upser: true };
-  // const filter = { _id: id };
   try {
-    const updatedData = {
-      name: data.name,
-      image: data.image,
-      details: data.details,
-      slot: data.slot,
-      price: data.price,
-      date: data.date,
-    };
-    console.log(updatedData);
-    const updateService = await ServiceModel.updateOne(
-      { _id: id },
-      { $set: updatedData },
-      { upsert: true }
-    );
-    return updateService;
+    const updateSingleService = await ServiceModel.findByIdAndUpdate(id, data, {
+      new: true,
+    });
+    return updateSingleService;
   } catch (error) {
     console.log(error);
   }
+};
+
+const getServiceCountService = async () => {
+  const serviceCount = await ServiceModel.countDocuments();
+  return serviceCount;
 };
 module.exports = {
   createServiceService,
@@ -53,6 +45,5 @@ module.exports = {
   getSingleServiceService,
   deleteSingleServiceService,
   updateSingleServiceService,
+  getServiceCountService,
 };
-
-// database er shathe bojhapora hobe

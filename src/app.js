@@ -5,6 +5,7 @@ const serviceRouter = require("./app/modules/service/service.route");
 const bannerRouter = require("./app/modules/banner/banner.route");
 const userRouter = require("./app/modules/user/user.route");
 const recommendRouter = require("./app/modules/recommendation/recommen.route");
+const paymentIntentRouter = require("./app/modules/payment/payment.route");
 
 app.use(cors());
 app.use(express.json());
@@ -13,7 +14,7 @@ app.use(express.urlencoded({ extended: true }));
 app.get("/", (req, res) => {
   res.send("server cholche ok");
 });
-
+app.use("/create-payment-intent", paymentIntentRouter);
 app.use("/service", serviceRouter);
 app.use("/banner", bannerRouter);
 app.use("/user", userRouter);

@@ -21,8 +21,13 @@ const makeUserAdminService = async (id, data) => {
 };
 
 const getSingleUserService = async (email) => {
-  const getSingleUser = UserModel.findOne({ email: email });
+  const getSingleUser = await UserModel.findOne({ email: email });
   return getSingleUser;
+};
+
+const getAdminUserService = async (email) => {
+  const getAdmin = await UserModel.findOne({ email: email });
+  return getAdmin;
 };
 
 module.exports = {
@@ -31,4 +36,5 @@ module.exports = {
   makeAdminService,
   getSingleUserService,
   makeUserAdminService,
+  getAdminUserService,
 };

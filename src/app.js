@@ -9,7 +9,11 @@ const paymentIntentRouter = require("./app/modules/payment/payment.route");
 const reservationRouter = require("./app/modules/reservation/reservation.route");
 const tokenRouter = require("./middlewares/tokenRoute");
 
-app.use(cors());
+app.use(
+  cors({
+    origin: "*",
+  })
+);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
